@@ -88,8 +88,8 @@
 
 DateTimePicker::DateTimePicker(QQuickItem *parent)
     : Picker(parent)
-    , m_from(1, 1, 1)
-    , m_to(275759, 9, 25)
+    , m_from(QDate(1, 1, 1))
+    , m_to(QDate(275759, 9, 25))
     , m_selectedDateTime(QDateTime::currentDateTime())
 {
 }
@@ -184,12 +184,12 @@ void DateTimePicker::setPrefer24Hour(bool value)
 
     This property holds the start date.
 */
-QDate DateTimePicker::from() const
+QDateTime DateTimePicker::from() const
 {
     return m_from;
 }
 
-void DateTimePicker::setFrom(const QDate &date)
+void DateTimePicker::setFrom(const QDateTime &date)
 {
     if (m_from == date)
         return;
@@ -200,7 +200,7 @@ void DateTimePicker::setFrom(const QDate &date)
 
 void DateTimePicker::resetFrom()
 {
-    setFrom(QDate(1, 1, 1));
+    setFrom(QDateTime(QDate(1, 1, 1)));
 }
 
 /*!
@@ -208,12 +208,12 @@ void DateTimePicker::resetFrom()
 
     This property holds the end date.
 */
-QDate DateTimePicker::to() const
+QDateTime DateTimePicker::to() const
 {
     return m_to;
 }
 
-void DateTimePicker::setTo(const QDate &date)
+void DateTimePicker::setTo(const QDateTime &date)
 {
     if (m_to == date)
         return;
@@ -224,7 +224,7 @@ void DateTimePicker::setTo(const QDate &date)
 
 void DateTimePicker::resetTo()
 {
-    setTo(QDate(275759, 9, 25));
+    setTo(QDateTime(QDate(275759, 9, 25)));
 }
 
 /*!

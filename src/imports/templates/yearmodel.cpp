@@ -16,33 +16,33 @@
 
 YearModel::YearModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_from(1, 1, 1)
-    , m_to(275759, 9, 25)
+    , m_from(QDate(1, 1, 1))
+    , m_to(QDate(275759, 9, 25))
 {
 }
 
-QDate YearModel::from() const
+QDateTime YearModel::from() const
 {
-    return m_from;
+    return QDateTime(m_from.date());
 }
 
-void YearModel::setFrom(const QDate &date)
+void YearModel::setFrom(const QDateTime &date)
 {
-    if (m_from == date)
+    if (m_from.date() == date.date())
         return;
 
     m_from = date;
     Q_EMIT fromChanged();
 }
 
-QDate YearModel::to() const
+QDateTime YearModel::to() const
 {
     return m_to;
 }
 
-void YearModel::setTo(const QDate &date)
+void YearModel::setTo(const QDateTime &date)
 {
-    if (m_to == date)
+    if (m_to.date() == date.date())
         return;
 
     m_to = date;
@@ -86,7 +86,7 @@ void YearModel::reset()
     m_list.clear();
 
     if (m_from < m_to) {
-        for (int i = m_from.year(); i < m_to.year(); i++)
+        for (int i = m_from.date().year(); i < m_to.date().year(); i++)
             m_list.append(i);
     }
 

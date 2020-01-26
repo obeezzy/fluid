@@ -102,7 +102,7 @@ FluidTemplates.DatePicker {
                     date.setDate(selectedDate.getDate());
                     date.setMonth(selectedDate.getMonth());
                     date.setFullYear(selectedDate.getFullYear());
-                    picker.selectedDate = new Date(date.getTime());
+                    selectedDate = new Date(date.getTime());
                     yearSelector.selectedYear = selectedDate.getFullYear();
                 }
             }

@@ -230,7 +230,7 @@ FluidTemplates.DateTimePicker {
             locale: picker.locale
             visible: picker.mode === FluidTemplates.DateTimePicker.Month
             onSelectedDateChanged: {
-                if (picker.selectedDateTime !== selectedDate) {
+                if (picker.selectedDateTime.getDate() !== selectedDate.getDate()) {
                     var date = new Date(picker.selectedDateTime.getTime());
                     date.setDate(selectedDate.getDate());
                     date.setMonth(selectedDate.getMonth());

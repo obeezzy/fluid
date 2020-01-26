@@ -88,8 +88,8 @@
 
 DatePicker::DatePicker(QQuickItem *parent)
     : Picker(parent)
-    , m_from(1, 1, 1)
-    , m_to(275759, 9, 25)
+    , m_from(QDate(1, 1, 1))
+    , m_to(QDate(275759, 9, 25))
     , m_selectedDate(QDate::currentDate())
 {
 }
@@ -162,14 +162,14 @@ void DatePicker::setWeekNumberVisible(bool value)
 
     This property holds the start date.
 */
-QDate DatePicker::from() const
+QDateTime DatePicker::from() const
 {
     return m_from;
 }
 
-void DatePicker::setFrom(const QDate &date)
+void DatePicker::setFrom(const QDateTime &date)
 {
-    if (m_from == date)
+    if (m_from.date() == date.date())
         return;
 
     m_from = date;
@@ -178,7 +178,7 @@ void DatePicker::setFrom(const QDate &date)
 
 void DatePicker::resetFrom()
 {
-    setFrom(QDate(1, 1, 1));
+    setFrom(QDateTime(QDate(1, 1, 1)));
 }
 
 /*!
@@ -186,14 +186,14 @@ void DatePicker::resetFrom()
 
     This property holds the end date.
 */
-QDate DatePicker::to() const
+QDateTime DatePicker::to() const
 {
     return m_to;
 }
 
-void DatePicker::setTo(const QDate &date)
+void DatePicker::setTo(const QDateTime &date)
 {
-    if (m_to == date)
+    if (m_to.date() == date.date())
         return;
 
     m_to = date;
@@ -202,7 +202,7 @@ void DatePicker::setTo(const QDate &date)
 
 void DatePicker::resetTo()
 {
-    setTo(QDate(275759, 9, 25));
+    setTo(QDateTime(QDate(275759, 9, 25)));
 }
 
 /*!
@@ -211,14 +211,14 @@ void DatePicker::resetTo()
     This property holds the date that has been selected by the user.
     The default value is the current date.
 */
-QDate DatePicker::selectedDate() const
+QDateTime DatePicker::selectedDate() const
 {
-    return m_selectedDate;
+    return QDateTime(m_selectedDate.date());
 }
 
-void DatePicker::setSelectedDate(const QDate &date)
+void DatePicker::setSelectedDate(const QDateTime &date)
 {
-    if (m_selectedDate == date)
+    if (m_selectedDate.date() == date.date())
         return;
 
     m_selectedDate = date;

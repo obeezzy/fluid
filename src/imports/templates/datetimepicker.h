@@ -26,8 +26,8 @@ class DateTimePicker : public Picker
     Q_PROPERTY(bool dayOfWeekRowVisible READ dayOfWeekRowVisible WRITE setDayOfWeekRowVisible NOTIFY dayOfWeekRowVisibleChanged FINAL)
     Q_PROPERTY(bool weekNumberVisible READ weekNumberVisible WRITE setWeekNumberVisible NOTIFY weekNumberVisibleChanged FINAL)
     Q_PROPERTY(bool prefer24Hour READ prefer24Hour WRITE setPrefer24Hour NOTIFY prefer24HourChanged FINAL)
-    Q_PROPERTY(QDate from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
-    Q_PROPERTY(QDate to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
+    Q_PROPERTY(QDateTime from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
+    Q_PROPERTY(QDateTime to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
     Q_PROPERTY(QDateTime selectedDateTime READ selectedDateTime WRITE setSelectedDateTime NOTIFY selectedDateTimeChanged FINAL)
 public:
     enum Mode {
@@ -53,12 +53,12 @@ public:
     bool prefer24Hour() const;
     void setPrefer24Hour(bool value);
 
-    QDate from() const;
-    void setFrom(const QDate &date);
+    QDateTime from() const;
+    void setFrom(const QDateTime &date);
     void resetFrom();
 
-    QDate to() const;
-    void setTo(const QDate &date);
+    QDateTime to() const;
+    void setTo(const QDateTime &date);
     void resetTo();
 
     QDateTime selectedDateTime() const;
@@ -78,8 +78,8 @@ private:
     bool m_dayOfWeekRowVisible = true;
     bool m_weekNumberVisible = true;
     bool m_prefer24Hour = true;
-    QDate m_from;
-    QDate m_to;
+    QDateTime m_from;
+    QDateTime m_to;
     QDateTime m_selectedDateTime;
 };
 

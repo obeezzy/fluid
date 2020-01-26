@@ -166,14 +166,14 @@ FluidTemplates.DateSelector {
                             height: parent.height
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            color: isEqual(selectedDate) ? "white" : (isEqual(new Date()) ? control.Material.accent : control.Material.primaryTextColor)
+                            color: isEqual(selectedDate) ? control.Material.theme === Material.Dark ? "black" : "white" : (isEqual(new Date()) ? control.Material.accent : control.Material.primaryTextColor)
                             opacity: model.month === grid.month ? 1 : 0
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             enabled: model.month === grid.month
-                            onClicked: control.selectedDate = model.date
+                            onClicked: control.selectedDate = new Date(model.year, model.month, model.day)
                         }
 
                         function isEqual(date) {

@@ -63,7 +63,7 @@ Q_SIGNALS:
     void headerChanged();
     void selectorChanged();
     void footerChanged();
-    void accepted(const QDate &date);
+    void accepted(const QDateTime &date);
     void rejected();
 
 protected:
