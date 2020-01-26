@@ -25,9 +25,9 @@ class DatePicker : public Picker
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged FINAL)
     Q_PROPERTY(bool dayOfWeekRowVisible READ dayOfWeekRowVisible WRITE setDayOfWeekRowVisible NOTIFY dayOfWeekRowVisibleChanged FINAL)
     Q_PROPERTY(bool weekNumberVisible READ weekNumberVisible WRITE setWeekNumberVisible NOTIFY weekNumberVisibleChanged FINAL)
-    Q_PROPERTY(QDate from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
-    Q_PROPERTY(QDate to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
-    Q_PROPERTY(QDate selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged FINAL)
+    Q_PROPERTY(QDateTime from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
+    Q_PROPERTY(QDateTime to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
+    Q_PROPERTY(QDateTime selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged FINAL)
 public:
     enum Mode {
         Year,
@@ -46,16 +46,16 @@ public:
     bool weekNumberVisible() const;
     void setWeekNumberVisible(bool value);
 
-    QDate from() const;
-    void setFrom(const QDate &date);
+    QDateTime from() const;
+    void setFrom(const QDateTime &date);
     void resetFrom();
 
-    QDate to() const;
-    void setTo(const QDate &date);
+    QDateTime to() const;
+    void setTo(const QDateTime &date);
     void resetTo();
 
-    QDate selectedDate() const;
-    void setSelectedDate(const QDate &date);
+    QDateTime selectedDate() const;
+    void setSelectedDate(const QDateTime &date);
 
 Q_SIGNALS:
     void modeChanged();
@@ -69,9 +69,9 @@ private:
     Mode m_mode = Month;
     bool m_dayOfWeekRowVisible = true;
     bool m_weekNumberVisible = true;
-    QDate m_from;
-    QDate m_to;
-    QDate m_selectedDate;
+    QDateTime m_from;
+    QDateTime m_to;
+    QDateTime m_selectedDate;
 };
 
 #endif // DATEPICKER_H

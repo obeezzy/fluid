@@ -22,18 +22,18 @@
 class YearModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(QDate from READ from WRITE setFrom NOTIFY fromChanged FINAL)
-    Q_PROPERTY(QDate to READ to WRITE setTo NOTIFY toChanged FINAL)
+    Q_PROPERTY(QDateTime from READ from WRITE setFrom NOTIFY fromChanged FINAL)
+    Q_PROPERTY(QDateTime to READ to WRITE setTo NOTIFY toChanged FINAL)
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged FINAL)
     Q_DISABLE_COPY(YearModel)
 public:
     explicit YearModel(QObject *parent = nullptr);
 
-    QDate from() const;
-    void setFrom(const QDate &date);
+    QDateTime from() const;
+    void setFrom(const QDateTime &date);
 
-    QDate to() const;
-    void setTo(const QDate &date);
+    QDateTime to() const;
+    void setTo(const QDateTime &date);
 
     QHash<int, QByteArray> roleNames() const override;
     QVariant data(const QModelIndex &index, int role) const override;
@@ -49,8 +49,8 @@ Q_SIGNALS:
     void countChanged();
 
 private:
-    QDate m_from;
-    QDate m_to;
+    QDateTime m_from;
+    QDateTime m_to;
     QVector<int> m_list;
 };
 

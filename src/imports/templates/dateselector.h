@@ -27,9 +27,9 @@ class DateSelector : public QQuickItem
     Q_PROPERTY(QQuickItem *calendar READ calendar WRITE setCalendar NOTIFY calendarChanged FINAL)
     Q_PROPERTY(bool dayOfWeekRowVisible READ dayOfWeekRowVisible WRITE setDayOfWeekRowVisible RESET resetDayOfWeekRowVisible NOTIFY dayOfWeekRowVisibleChanged FINAL)
     Q_PROPERTY(bool weekNumberVisible READ weekNumberVisible WRITE setWeekNumberVisible RESET resetWeekNumberVisible NOTIFY weekNumberVisibleChanged FINAL)
-    Q_PROPERTY(QDate from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
-    Q_PROPERTY(QDate to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
-    Q_PROPERTY(QDate selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged FINAL)
+    Q_PROPERTY(QDateTime from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
+    Q_PROPERTY(QDateTime to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
+    Q_PROPERTY(QDateTime selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged FINAL)
     Q_DISABLE_COPY(DateSelector)
 public:
     explicit DateSelector(QQuickItem *parent = nullptr);
@@ -53,16 +53,16 @@ public:
     void setWeekNumberVisible(bool value);
     void resetWeekNumberVisible();
 
-    QDate from() const;
-    void setFrom(const QDate &date);
+    QDateTime from() const;
+    void setFrom(const QDateTime &date);
     void resetFrom();
 
-    QDate to() const;
-    void setTo(const QDate &date);
+    QDateTime to() const;
+    void setTo(const QDateTime &date);
     void resetTo();
 
-    QDate selectedDate() const;
-    void setSelectedDate(const QDate &date);
+    QDateTime selectedDate() const;
+    void setSelectedDate(const QDateTime &date);
 
 Q_SIGNALS:
     void localeChanged();
@@ -81,9 +81,9 @@ private:
     QQuickItem *m_calendar = nullptr;
     bool m_dayOfWeekRowVisible = true;
     bool m_weekNumberVisible = true;
-    QDate m_from;
-    QDate m_to;
-    QDate m_selectedDate;
+    QDateTime m_from;
+    QDateTime m_to;
+    QDateTime m_selectedDate;
 
 private Q_SLOTS:
     void updateLayout();

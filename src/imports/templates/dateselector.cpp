@@ -17,8 +17,8 @@
 DateSelector::DateSelector(QQuickItem *parent)
     : QQuickItem(parent)
     , m_contentItem(new QQuickItem(this))
-    , m_from(1, 1, 1)
-    , m_to(275759, 9, 25)
+    , m_from(QDate(1, 1, 1))
+    , m_to(QDate(275759, 9, 25))
     , m_selectedDate(QDate::currentDate())
 {
     m_contentItem->setParentItem(this);
@@ -122,12 +122,12 @@ void DateSelector::resetWeekNumberVisible()
     setWeekNumberVisible(true);
 }
 
-QDate DateSelector::from() const
+QDateTime DateSelector::from() const
 {
     return m_from;
 }
 
-void DateSelector::setFrom(const QDate &date)
+void DateSelector::setFrom(const QDateTime &date)
 {
     if (m_from == date)
         return;
@@ -138,17 +138,17 @@ void DateSelector::setFrom(const QDate &date)
 
 void DateSelector::resetFrom()
 {
-    setFrom(QDate(1, 1, 1));
+    setFrom(QDateTime(QDate(1, 1, 1)));
 }
 
-QDate DateSelector::to() const
+QDateTime DateSelector::to() const
 {
-    return m_to;
+    return QDateTime(m_to.date());
 }
 
-void DateSelector::setTo(const QDate &date)
+void DateSelector::setTo(const QDateTime &date)
 {
-    if (m_to == date)
+    if (m_to.date() == date.date())
         return;
 
     m_to = date;
@@ -157,17 +157,17 @@ void DateSelector::setTo(const QDate &date)
 
 void DateSelector::resetTo()
 {
-    setTo(QDate(275759, 9, 25));
+    setTo(QDateTime(QDate(275759, 9, 25)));
 }
 
-QDate DateSelector::selectedDate() const
+QDateTime DateSelector::selectedDate() const
 {
-    return m_selectedDate;
+    return QDateTime(m_selectedDate.date());
 }
 
-void DateSelector::setSelectedDate(const QDate &date)
+void DateSelector::setSelectedDate(const QDateTime &date)
 {
-    if (m_selectedDate == date)
+    if (m_selectedDate.date() == date.date())
         return;
 
     m_selectedDate = date;

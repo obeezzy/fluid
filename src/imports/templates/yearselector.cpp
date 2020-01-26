@@ -18,8 +18,8 @@
 YearSelector::YearSelector(QQuickItem *parent)
     : QQuickItem(parent)
     , m_model(new YearModel(this))
-    , m_from(1, 1, 1)
-    , m_to(275759, 9, 25)
+    , m_from(QDate(1, 1, 1))
+    , m_to(QDate(275759, 9, 25))
     , m_selectedYear(QDate::currentDate().year())
 {
     m_model->setFrom(m_from);
@@ -88,14 +88,14 @@ void YearSelector::resetVisibleItemCount()
     setVisibleItemCount(7);
 }
 
-QDate YearSelector::from() const
+QDateTime YearSelector::from() const
 {
     return m_from;
 }
 
-void YearSelector::setFrom(const QDate &date)
+void YearSelector::setFrom(const QDateTime &date)
 {
-    if (m_from == date)
+    if (m_from.date() == date.date())
         return;
 
     m_from = date;
@@ -109,17 +109,17 @@ void YearSelector::setFrom(const QDate &date)
 
 void YearSelector::resetFrom()
 {
-    setFrom(QDate(1, 1, 1));
+    setFrom(QDateTime(QDate(1, 1, 1)));
 }
 
-QDate YearSelector::to() const
+QDateTime YearSelector::to() const
 {
-    return m_to;
+    return QDateTime(m_to.date());
 }
 
-void YearSelector::setTo(const QDate &date)
+void YearSelector::setTo(const QDateTime &date)
 {
-    if (m_to == date)
+    if (m_to.date() == date.date())
         return;
 
     m_to = date;
@@ -133,7 +133,7 @@ void YearSelector::setTo(const QDate &date)
 
 void YearSelector::resetTo()
 {
-    setTo(QDate(275759, 9, 25));
+    setTo(QDateTime(QDate(275759, 9, 25)));
 }
 
 int YearSelector::selectedYear() const
